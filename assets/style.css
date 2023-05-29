@@ -1,0 +1,98 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Inter", sans-serif;
+}
+
+.navbar {
+    position: relative;
+    width: 100%;
+    height: 15vh;
+    background-color: #d9d9d9;
+}
+
+.sidebar {
+    position: absolute;
+    top: 0;
+    width: 20%;
+    height: 100vh;
+    background-color: #47b5ff;
+}
+
+.txt-adm {
+    margin-left: 25%;
+    margin-top: 15%;
+    font-size: 36px;
+    color: white;
+    font-weight: 700;
+    font-style: italic;
+}
+
+.sidebar ul {
+    margin-left: 10%;
+    margin-top: 30%;
+    list-style: none;
+}
+
+.sidebar li a {
+    color: white;
+    font-size: 20px;
+    display: inline-block;
+    padding-left: 8%;
+    padding-bottom: 15%;
+    text-decoration: none;
+}
+
+.sidebar li a:hover {
+    border-radius: 10px;
+    background-color: #2fabff;
+}
+
+.fa-wallet {
+    position: absolute;
+    left: 25%;
+    bottom: 5.5vh;
+    color: #256d85;
+}
+
+.fa-circle-user {
+    color: #256d85;
+}
+
+.txt-rp {
+    position: absolute;
+    left: 29%;
+    font-size: 24px;
+    bottom: 4.3vh;
+    font-weight: 700;
+    color: #06283d;
+}
+
+.icon-user {
+    position: absolute;
+    right: 2%;
+}
+
+.txt-user {
+    position: absolute;
+    right: 5%;
+    font-size: 22px;
+    bottom: 4.3vh;
+    font-weight: 400;
+    color: #06283d;
+}
+
+.card {
+    margin-top: 20vh;
+    margin-left: 50vh;
+}
+
+.form-saldo {
+    margin-top: 5vh;
+}
+
+.btn-kirim {
+    background-color: #47b5ff !important;
+    border: none !important;
+}
