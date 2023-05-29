@@ -28,7 +28,7 @@ getData();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Web Pulsa Kelompok 2</title>
     <!-- //TODO File CSS -->
-    <link rel="stylesheet" href="assets/style.css">
+    <link rel="stylesheet" href="assets/css/style.css">
     <!-- //TODO Bootstrap 5.3 -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css">
     <!-- //TODO Font Inter -->

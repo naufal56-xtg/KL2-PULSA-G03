@@ -17,6 +17,7 @@
     top: 0;
     width: 20%;
     height: 100vh;
+    padding-right: 5%;
     background-color: #47b5ff;
 }
 
@@ -30,21 +31,20 @@
 }
 
 .sidebar ul {
-    margin-left: 10%;
-    margin-top: 30%;
+    margin-top: 40%;
     list-style: none;
 }
 
 .sidebar li a {
     color: white;
     font-size: 20px;
-    display: inline-block;
-    padding-left: 8%;
-    padding-bottom: 15%;
+    display: block;
+    padding: 10%;
     text-decoration: none;
 }
 
 .sidebar li a:hover {
+    padding-left: 20%;
     border-radius: 10px;
     background-color: #2fabff;
 }
