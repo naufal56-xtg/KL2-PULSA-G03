@@ -133,7 +133,7 @@ $index = $halaman_awal + 1;
                         <ul class="pagination">
                             <li class="page-item">
                                 <a class="page-link" <?php if ($halaman > 1) {
-                                                            echo "href='riwayat.php?id=$id_user&halaman=$Previous'";
+                                                            echo "href='?id=$id_user&halaman=$Previous'";
                                                         } ?> aria-label="Previous">
                                     <span aria-hidden="true">&laquo;</span>
                                 </a>
