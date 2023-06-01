@@ -1,8 +1,8 @@
-## Tugas Kelompok 2 Study Case (Web Pulsa)
+# Tugas Kelompok 2 Study Case (Web Pulsa)
 
 <br>
 
-# Anggota :
+## Anggota :
 
     - Naufal Hadi Putra
     - Taufik Hidayat
@@ -10,7 +10,7 @@
 
 <br>
 
-# Tools :
+## Tools :
 
     - HTML & CSS
     - PHP & Javascript
@@ -25,7 +25,7 @@
 
 <br>
 
-## 1. Halaman Top Up
+# 1. Halaman Top Up
 
 <br>
 
@@ -33,7 +33,7 @@
 
 <br>
 
-## 2. Halaman Beli Pulsa
+# 2. Halaman Beli Pulsa
 
 <br>
 
@@ -41,7 +41,7 @@
 
 <br>
 
-## 3. Halaman Riwayat Transaksi Pulsa
+# 3. Halaman Riwayat Transaksi Pulsa
 
 <br>
 
