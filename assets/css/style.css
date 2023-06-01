@@ -5,6 +5,10 @@
     font-family: "Inter", sans-serif;
 }
 
+body {
+    height: 100%;
+}
+
 .navbar {
     position: relative;
     width: 100%;
@@ -16,7 +20,7 @@
     position: absolute;
     top: 0;
     width: 20%;
-    height: 100vh;
+    height: 150vh;
     padding-right: 5%;
     background-color: #47b5ff;
 }
@@ -88,6 +92,10 @@
     margin-left: 50vh;
 }
 
+.card-riwayat {
+    margin-top: 10vh !important;
+}
+
 .form-saldo {
     margin-top: 5vh;
 }
@@ -96,3 +104,54 @@
     background-color: #47b5ff !important;
     border: none !important;
 }
+
+label {
+    display: inline-block;
+    padding: 1vh 5vh;
+    margin: 7px 0;
+    margin-right: 2%;
+    color: #06283d;
+    border-radius: 10px;
+    background-color: #d9d9d9;
+    cursor: pointer;
+}
+
+.xl,
+.tri,
+.im3,
+.tsel {
+    width: unset;
+    opacity: 0;
+    position: absolute;
+}
+
+.checked {
+    background-color: #47b5ff;
+    color: white;
+}
+
+.table {
+    border: 5px solid #47b5ff !important;
+}
+
+.thead {
+    background-color: #47b5ff;
+    color: #ffffff;
+}
+
+.tbody tr:nth-child(even) {
+    background-color: #dcf4ff;
+}
+
+.tbody tr:nth-child(odd) {
+    background-color: #f2fbff;
+}
+
+.act {
+    color: #06283d !important;
+}
+
+/* .page-link {
+    background-color: #47b5ff !important;
+    color: #ffffff !important;
+} */

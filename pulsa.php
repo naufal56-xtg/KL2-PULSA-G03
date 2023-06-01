@@ -1,30 +1,21 @@
 <?php
 require_once('./connection.php');
 
+
 $id_user = $_GET['id'];
 
-if (!empty($id_user)) {
-    function getData()
-    {
-        global $user, $connect, $id_user;
 
-        $query = mysqli_query($connect, "SELECT * FROM users WHERE id_user='$id_user'");
-        $user = mysqli_fetch_array($query);
-    }
-} else {
-    function getData()
-    {
-        global $user, $connect;
 
-        $query = mysqli_query($connect, "SELECT * FROM users WHERE id_user='1'");
-        $user = mysqli_fetch_array($query);
-    }
+function getData()
+{
+    global $user, $connect, $id_user;
+
+    $query = mysqli_query($connect, "SELECT * FROM users WHERE id_user='$id_user'");
+    $user = mysqli_fetch_array($query);
 }
 
 
-
 getData();
-
 
 
 
@@ -37,7 +28,7 @@ getData();
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Web Pulsa | Top Up</title>
+    <title>Web Pulsa | Beli Pulsa</title>
     <!-- //TODO File CSS -->
     <link rel="stylesheet" href="assets/css/style.css">
     <!-- //TODO Bootstrap 5.3 -->
@@ -48,6 +39,7 @@ getData();
     <!-- FontAwesome 6.2.0 CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/js/all.min.js" integrity="sha512-naukR7I+Nk6gp7p5TMA4ycgfxaZBJ7MO5iC3Fp6ySQyKFHOGfpkSZkYVWV5R7u7cfAicxanwYQ5D1e17EfJcMA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
     <script src='http://code.jquery.com/jquery-1.9.1.min.js'></script>
     <link href='https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.1/css/toastr.css' rel='stylesheet' />
     <script src='https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.1/js/toastr.js'></script>
@@ -69,15 +61,16 @@ getData();
         </nav>
     </header>
 
+
     <aside>
         <div class="sidebar">
             <h1 class="txt-adm">ADMIN</h1>
             <ul>
                 <li>
-                    <a href="index.php?id=<?= $user['id_user']; ?>" class="btn-topup act">Top Up</a>
+                    <a href="index.php?id=<?= $user['id_user']; ?>" class="btn-topup">Top Up</a>
                 </li>
                 <li>
-                    <a href="pulsa.php?id=<?= $user['id_user']; ?>" class="btn-send">Kirim Pulsa</a>
+                    <a href="pulsa.php?id=<?= $user['id_user']; ?>" class="btn-send act">Kirim Pulsa</a>
                 </li>
                 <li>
                     <a href="history.php?id=<?= $user['id_user']; ?>&halaman=1" class="btn-history">Riwayat</a>
@@ -91,13 +84,26 @@ getData();
         <div class="container d-flex justify-content-center">
             <div class="card col-6">
                 <div class="card-body">
-                    <h2 class="card-title">Top Up</h2>
+                    <h2 class="card-title">Pulsa</h2>
                     <form method="POST">
                         <div class="mb-3 form-saldo">
-                            <input type="number" class="form-control" name="saldo">
+                            <input type="number" class="form-control" name="no_kartu" placeholder="Masukan Nomor HP">
+                        </div>
+                        <div class="mb-3">
+                            <input type="number" class="form-control" name="nominal" placeholder="Masukan Nominal Pembelian">
+                        </div>
+                        <div class="mb-3">
+                            <label for="tsel">Telkomsel</label>
+                            <input type="radio" class="tsel" id="tsel" value="tsel" name="prov">
+                            <label for="tri">3 (Tri)</label>
+                            <input type="radio" class="tri" id="tri" value="tri" name="prov">
+                            <label for="xl">XL</label>
+                            <input type="radio" class="xl" id="xl" value="xl" name="prov">
+                            <label for="im3">IM3</label>
+                            <input type="radio" class="im3" id="im3" value="im3" name="prov">
                         </div>
                         <div class="d-grid">
-                            <button type="submit" name="submit" onclick="notif()" class="btn btn-primary btn-kirim">Top Up</button>
+                            <button type="submit" name="submit" onclick="notif()" class="btn btn-primary btn-kirim">Kirim</button>
                         </div>
                     </form>
                 </div>
@@ -110,36 +116,45 @@ getData();
     <?php
 
     if (isset($_POST['submit'])) {
-        $saldo = $_POST['saldo'];
+        $no_kartu = $_POST['no_kartu'];
+        $prov = $_POST['prov'];
+        $nominal = $_POST['nominal'];
+        $saldo = $user['saldo'];
 
-
-        if ($saldo == 0 || $saldo == null) {
+        if ($no_kartu == 0 || $no_kartu == null) {
             echo "<script>
-                toastr.warning('', 'Top Up Saldo Tidak Boleh (Kosong)', {
-                    timeOut: 3000
-                });
-                </script>";
-        } else if ($saldo <= 5000) {
+            toastr.warning('', 'No Kartu Tidak Boleh (Kosong)', {
+                timeOut: 3000
+            });
+            </script>";
+        } else if ($nominal == 0 || $nominal == null) {
             echo "<script>
-                toastr.warning('', 'Minimal Top Up Saldo Rp. 5.000', {
+            toastr.warning('', 'Nominal Pembelian Tidak Boleh (Kosong)', {
+                timeOut: 3000
+            });
+            </script>";
+        } else if ($prov == null) {
+            echo "<script>
+            toastr.warning('', 'Silahkan Pilih Provider Terlebih Dahulu', {
+                timeOut: 3000
+            });
+            </script>";
+        } else if ($saldo < $nominal) {
+            echo "<script>
+                toastr.warning('Silahkan Top Up Terlebih Dahulu !', 'Saldo Tidak Mencukupi', {
                     timeOut: 3000
                 });
                 </script>";
         } else {
-            $user_id = $user['id_user'];
-            $user_saldo = $user['saldo'];
-            if ($user_saldo != 0) {
-                $user_saldo += $saldo;
-                $update = mysqli_query($connect, "UPDATE users SET saldo='$user_saldo' WHERE id_user='$user_id' ");
-            } else {
-                // echo $user_saldo;
-                $update = mysqli_query($connect, "UPDATE users SET saldo='$saldo' WHERE id_user='$user_id' ");
-            }
+            $insert = mysqli_query($connect, "INSERT INTO histories (no_kartu, prov, nominal, user_id) VALUES ('$no_kartu', '$prov', '$nominal', '$id_user')");
 
-            if ($update) {
+            if ($insert) {
+                $user_saldo = $saldo - $nominal;
+                $update = mysqli_query($connect, "UPDATE users SET saldo='$user_saldo' WHERE id_user='$id_user' ");
+
                 getData();
                 echo "<script>
-                        toastr.success('Terima Kasih', 'Selamat Saldo Anda Berhasil Di Top Up', {
+                        toastr.success('Terima Kasih', 'Selamat Pembelian Pulsa Berhasil', {
                             timeOut: 3000
                         });    
                     </script>";
@@ -153,10 +168,14 @@ getData();
             }
         }
     }
+
+
     ?>
 
 
 
+
+    <script src="assets/js/main.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>
