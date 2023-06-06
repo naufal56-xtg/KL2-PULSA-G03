@@ -104,28 +104,33 @@ $index = $halaman_awal + 1;
                                 <th>No</th>
                                 <th>No Kartu</th>
                                 <th>Provider</th>
-                                <th>Nominal</th>
                                 <th>Tanggal</th>
                                 <th>Jam</th>
+                                <th>Nominal</th>
                             </tr>
                         </thead>
                         <tbody class="tbody">
+                            <?php $total = 0; ?>
                             <?php while ($riwayat = mysqli_fetch_assoc($dataRiwayat)) { ?>
                                 <?php
                                 $date = $riwayat['tanggal'];
                                 $newDate = date('d-m-Y', strtotime($date));
                                 $hour = date('H:i', strtotime($date));
-
+                                $total += $riwayat['nominal'];
                                 ?>
                                 <tr class="text-center">
                                     <td><?= $index++; ?></td>
                                     <td><?= $riwayat['no_kartu']; ?></td>
                                     <td><?= strtoupper($riwayat['prov']); ?></td>
-                                    <td>Rp. <?= number_format($riwayat['nominal']); ?></td>
                                     <td><?= $newDate; ?></td>
                                     <td><?= $hour; ?></td>
+                                    <td>Rp. <?= number_format($riwayat['nominal']); ?></td>
                                 </tr>
                             <?php } ?>
+                            <tr class="text-center">
+                                <th colspan="5">Total Transaksi</th>
+                                <td>Rp. <?= number_format($total); ?></td>
+                            </tr>
                         </tbody>
                     </table>
 
